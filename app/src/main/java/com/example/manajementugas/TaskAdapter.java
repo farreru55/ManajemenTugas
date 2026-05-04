@@ -2,6 +2,7 @@ package com.example.manajementugas;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.card.MaterialCardView;
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
@@ -52,6 +54,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.tvDeadline.setText(currentTask.getDeadline());
         holder.rbStatus.setChecked(currentTask.isCompleted());
 
+        updateTaskVisuals(holder, currentTask.isCompleted());
+
         // Handle Priority Colors
         int bgColor, textColor;
         if ("TINGGI".equalsIgnoreCase(currentTask.getPriority())) {
@@ -69,7 +73,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.tvPriority.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, bgColor)));
 
         holder.rbStatus.setOnClickListener(v -> {
-            currentTask.setCompleted(holder.rbStatus.isChecked());
+            boolean newStatus = !currentTask.isCompleted();
+            currentTask.setCompleted(newStatus);
+            holder.rbStatus.setChecked(newStatus);
+            updateTaskVisuals(holder, newStatus);
             if (listener != null) listener.onTaskStatusChanged(currentTask);
         });
 
@@ -87,10 +94,21 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         return taskList.size();
     }
 
+    private void updateTaskVisuals(TaskViewHolder holder, boolean isCompleted) {
+        if (isCompleted) {
+            holder.tvTitle.setPaintFlags(holder.tvTitle.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.cardTask.setCardBackgroundColor(ContextCompat.getColor(context, R.color.bg_completed));
+        } else {
+            holder.tvTitle.setPaintFlags(holder.tvTitle.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+            holder.cardTask.setCardBackgroundColor(ContextCompat.getColor(context, R.color.white));
+        }
+    }
+
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle, tvCourse, tvPriority, tvDeadline;
         RadioButton rbStatus;
         ImageView ivEdit, ivDelete;
+        MaterialCardView cardTask;
 
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -101,6 +119,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             rbStatus = itemView.findViewById(R.id.rb_task_status);
             ivEdit = itemView.findViewById(R.id.iv_edit);
             ivDelete = itemView.findViewById(R.id.iv_delete);
+            cardTask = itemView.findViewById(R.id.card_task);
         }
     }
 }

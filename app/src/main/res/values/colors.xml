@@ -18,4 +18,5 @@
 
     <color name="bg_course">#F0F4FF</color>
     <color name="text_course">#4461F2</color>
+    <color name="bg_completed">#EEEEEE</color>
 </resources>
