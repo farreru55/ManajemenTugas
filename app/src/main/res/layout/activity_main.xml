@@ -88,7 +88,7 @@
     <!-- Container Fragment (Di bawah area header) -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/main_fragment_container"
-        android:name="com.example.manajementugaskuliah.ListFragment"
+        android:name="com.example.manajementugas.ListFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
