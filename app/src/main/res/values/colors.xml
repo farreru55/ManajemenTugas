@@ -2,15 +2,20 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="colorPrimary">#3D5AFE</color>
-    <color name="colorBackground">#F5F5F5</color>
-    <color name="colorTextPrimary">#212121</color>
+    <color name="purple">#CDA7FD</color>
+    <color name="colorPrimary">#4461F2</color>
+    <color name="colorPrimaryDark">#304FFE</color>
+    <color name="colorBackground">#F8F9FE</color>
+    <color name="colorTextPrimary">#1A1C1E</color>
 
-        <!-- Warna Prioritas & Matkul -->
-    <color name="bg_high_priority">#FFCDD2</color>
-    <color name="text_high_priority">#B71C1C</color>
-    <color name="bg_medium_priority">#FFF9C4</color>
-    <color name="text_medium_priority">#FBC02D</color>
-    <color name="bg_course">#E3F2FD</color>
-    <color name="text_course">#1565C0</color>
+    <!-- Warna Prioritas Lebih Cerah & Modern -->
+    <color name="bg_high_priority">#FFEBEE</color>
+    <color name="text_high_priority">#F44336</color>
+    <color name="bg_medium_priority">#FFFDE7</color>
+    <color name="text_medium_priority">#FFB300</color>
+    <color name="bg_low_priority">#E8F5E9</color>
+    <color name="text_low_priority">#4CAF50</color>
+
+    <color name="bg_course">#F0F4FF</color>
+    <color name="text_course">#4461F2</color>
 </resources>
